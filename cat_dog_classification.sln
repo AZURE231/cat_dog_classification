@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cat_dog_classification", "cat_dog_classification\cat_dog_classification.csproj", "{DA614D19-6A20-462C-92E2-4BCDF125026E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catvsdog_WebApi1", "Catvsdog_WebApi1\Catvsdog_WebApi1.csproj", "{9270E356-129F-4A92-947D-77E27D6463B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA614D19-6A20-462C-92E2-4BCDF125026E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA614D19-6A20-462C-92E2-4BCDF125026E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA614D19-6A20-462C-92E2-4BCDF125026E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA614D19-6A20-462C-92E2-4BCDF125026E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9270E356-129F-4A92-947D-77E27D6463B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9270E356-129F-4A92-947D-77E27D6463B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9270E356-129F-4A92-947D-77E27D6463B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9270E356-129F-4A92-947D-77E27D6463B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {161C51F7-FA61-4BFC-B117-D388249AD642}
+	EndGlobalSection
+EndGlobal
