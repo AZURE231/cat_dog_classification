@@ -1,14 +1,10 @@
 ﻿using Cat_breed_classification;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ML;
 using Microsoft.OpenApi.Models;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Register the PredictionEnginePools
 builder.Services.AddPredictionEnginePool<Catvsdog.ModelInput, Catvsdog.ModelOutput>()
@@ -18,6 +14,17 @@ builder.Services.AddPredictionEnginePool<dog_breed.ModelInput, dog_breed.ModelOu
 builder.Services.AddPredictionEnginePool<cat_breed.ModelInput, cat_breed.ModelOutput>()
     .FromFile("cat_breed.mlnet");
 
+builder.Services.AddCors(opts =>
+{
+    opts.AddPolicy("AllowAll", builder =>
+    {
+        builder.WithOrigins("http://localhost:3000;   ")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
 // Register services for Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -26,6 +33,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
+
+app.UseCors("AllowAll");
 
 // Enable middleware to serve generated Swagger as a JSON endpoint
 app.UseSwagger();
@@ -77,7 +86,8 @@ app.MapPost("/predict", async (HttpRequest request,
         };
 
         var dogBreedPrediction = dogBreedPredictionEnginePool.Predict(dogBreedInput);
-        var dogBreedName = dogBreedPrediction.PredictedLabel.Split('-').Last();
+        var dogBreedName = FormatBreedName(dogBreedPrediction.PredictedLabel.Split('-').Last());
+
 
         response = new
         {
@@ -107,6 +117,12 @@ app.MapPost("/predict", async (HttpRequest request,
 
     return Results.Ok(response);
 });
+
+string FormatBreedName(string breed)
+{
+    // Replace underscores with spaces and capitalize each word
+    return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(breed.Replace('_', ' '));
+}
 
 // Run app
 app.Run();
